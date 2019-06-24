@@ -37,6 +37,5 @@ public class Basket {
         }
 
         return s + " Total cost " + totalCost;
-
     }
 }
