@@ -70,7 +70,7 @@ public class Main {
 //        stockList.Items().put(temp.getName(), temp);
 
         stockList.Items().get("car").adjustStock(2000);
-        stockList.Items().get("car").adjustStock(-1000);
+        stockList.get("car").adjustStock(-1000);
         System.out.println(stockList);
         for(Map.Entry<String, Double> price: stockList.PriceList().entrySet()){
             System.out.println(price.getKey() + " costs" + price.getValue());
