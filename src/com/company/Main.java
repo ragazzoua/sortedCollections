@@ -72,7 +72,7 @@ public class Main {
         stockList.Items().get("car").adjustStock(2000);
         stockList.get("car").adjustStock(-1000);
         System.out.println(stockList);
-        for(Map.Entry<String, Double> price: stockList.PriceList().entrySet()){
+        for (Map.Entry<String, Double> price : stockList.PriceList().entrySet()) {
             System.out.println(price.getKey() + " costs" + price.getValue());
         }
 
@@ -84,9 +84,23 @@ public class Main {
             System.out.println("We do not sell " + item);
             return 0;
         }
-        if (stockList.sellStock(item, quantity) != 0) {
-            basket.addToBasket(stockItem, quantity);
-            return quantity;
+        if (stockList.reserveStock(item, quantity) != 0) {
+            return basket.addToBasket(stockItem, quantity);
+        }
+        if (stockItem.availableQuantity() < quantity) {
+            System.out.println("We can not sell " + quantity + " " + stockItem.getName() + ". We have only " + stockItem.availableQuantity());
+        }
+        return 0;
+    }
+
+    public static int removeItem(Basket basket, String item, int quantity) {
+        StockItem stockItem = stockList.get(item);
+        if (stockItem == null) {
+            System.out.println("We do not sell " + item);
+            return 0;
+        }
+        if (basket.removeFromBasket(stockItem, quantity) == quantity) {
+            return stockList.unreserveStock(item, quantity);
         }
         if (stockItem.availableQuantity() < quantity) {
             System.out.println("We can not sell " + quantity + " " + stockItem.getName() + ". We have only " + stockItem.availableQuantity());
