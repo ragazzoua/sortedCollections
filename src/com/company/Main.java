@@ -46,32 +46,45 @@ public class Main {
         }
 
         Basket timsbasket = new Basket("Tim");
-        sellItem(timsbasket,"car", 1);
+        sellItem(timsbasket, "car", 1);
         System.out.println(timsbasket);
 
-        sellItem(timsbasket,"car", 1);
+        //sellItem(timsbasket, "car", 1);
         System.out.println(timsbasket);
 
-        sellItem(timsbasket,"spanner", 1);
+        sellItem(timsbasket, "spanner", 1);
         System.out.println(timsbasket);
 
-        sellItem(timsbasket,"juice", 1);
-        sellItem(timsbasket,"bread", 1);
-        sellItem(timsbasket,"cup", 1);
+        sellItem(timsbasket, "juice", 1);
+        sellItem(timsbasket, "bread", 1);
+        sellItem(timsbasket, "cup", 1);
         System.out.println(timsbasket);
+
+        sellItem(timsbasket, "cake", 8);
 
         System.out.println(stockList);
+
+//        temp = new StockItem("pen", 1.22);
+//        stockList.Items().put(temp.getName(), temp);
+
+        stockList.Items().get("car").adjustStock(2000);
+        stockList.Items().get("car").adjustStock(-1000);
+        System.out.println(stockList);
+
     }
 
     public static int sellItem(Basket basket, String item, int quantity) {
         StockItem stockItem = stockList.get(item);
         if (stockItem == null) {
-            System.out.println("We do not sell" + item);
+            System.out.println("We do not sell " + item);
             return 0;
         }
         if (stockList.sellStock(item, quantity) != 0) {
             basket.addToBasket(stockItem, quantity);
             return quantity;
+        }
+        if (stockItem.quantityInStock() < quantity) {
+            System.out.println("We can not sell " + quantity + " " + stockItem.getName() + ". We have only " + stockItem.quantityInStock());
         }
         return 0;
     }

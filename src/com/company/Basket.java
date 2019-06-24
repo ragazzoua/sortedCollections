@@ -3,6 +3,7 @@ package com.company;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class Basket {
 
@@ -29,13 +30,13 @@ public class Basket {
 
     @Override
     public String toString() {
-        String s = "\n Shoping basket " + name + " contains " + list.size() + ((list.size() == 1) ? " item" : " items") +"\n";
+        String s = "\nShoping basket " + name + " contains " + list.size() + ((list.size() == 1) ? " item" : " items") +"\n";
         double totalCost = 0.0;
         for (Map.Entry<StockItem, Integer> item : list.entrySet()) {
             s = s + item.getKey() + ". " + item.getValue() + " purchased\n";
             totalCost += item.getKey().getPrice() * item.getValue();
         }
 
-        return s + " Total cost " + totalCost;
+        return s + "Total cost " + totalCost;
     }
 }
