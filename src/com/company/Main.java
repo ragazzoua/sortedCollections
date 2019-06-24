@@ -38,9 +38,13 @@ public class Main {
 
         System.out.println(stockList);
 
+        for (String s: stockList.Items().keySet()){
+            System.out.println(s);
+        }
 
 
-        System.out.println(stockList);
+
+
 
     }
 }
