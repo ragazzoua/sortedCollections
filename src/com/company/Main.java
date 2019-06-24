@@ -88,8 +88,8 @@ public class Main {
             basket.addToBasket(stockItem, quantity);
             return quantity;
         }
-        if (stockItem.quantityInStock() < quantity) {
-            System.out.println("We can not sell " + quantity + " " + stockItem.getName() + ". We have only " + stockItem.quantityInStock());
+        if (stockItem.availableQuantity() < quantity) {
+            System.out.println("We can not sell " + quantity + " " + stockItem.getName() + ". We have only " + stockItem.availableQuantity());
         }
         return 0;
     }
