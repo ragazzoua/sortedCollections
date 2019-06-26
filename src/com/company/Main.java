@@ -76,17 +76,17 @@ public class Main {
         removeItem(basket, "cup", 1);
         System.out.println(basket);
 
-        removeItem(timsbasket,"car",  1);
-        removeItem(timsbasket,"cup",  9);
-        removeItem(timsbasket,"car",  1);
-        System.out.println("cars removed : "  + removeItem(timsbasket, "car", 1));
+        removeItem(timsbasket, "car", 1);
+        removeItem(timsbasket, "cup", 9);
+        removeItem(timsbasket, "car", 1);
+        System.out.println("cars removed : " + removeItem(timsbasket, "car", 1));
 
         System.out.println(timsbasket);
 
-        removeItem(timsbasket,"bread", 1);
-        removeItem(timsbasket,"cup", 1);
-        removeItem(timsbasket,"juice", 4);
-        removeItem(timsbasket,"cup", 3);
+        removeItem(timsbasket, "bread", 1);
+        removeItem(timsbasket, "cup", 1);
+        removeItem(timsbasket, "juice", 4);
+        removeItem(timsbasket, "cup", 3);
 
         System.out.println(timsbasket);
 
@@ -98,9 +98,15 @@ public class Main {
         System.out.println(basket);
         System.out.println(stockList);
 
+        StockItem car = stockList.Items().get("car");
+        if (car != null) {
+            car.adjustStock(2000);
+        }
+        if (car != null) {
+            stockList.get("car").adjustStock(-1000);
+        }
 
-        stockList.Items().get("car").adjustStock(2000);
-        stockList.get("car").adjustStock(-1000);
+
         System.out.println(stockList);
 //        for (Map.Entry<String, Double> price : stockList.PriceList().entrySet()) {
 //            System.out.println(price.getKey() + " costs" + price.getValue());
@@ -140,8 +146,8 @@ public class Main {
         return 0;
     }
 
-    public static void checkOut(Basket basket){
-        for (Map.Entry<StockItem, Integer> item: basket.Items().entrySet()){
+    public static void checkOut(Basket basket) {
+        for (Map.Entry<StockItem, Integer> item : basket.Items().entrySet()) {
             stockList.sellStock(item.getKey().getName(), item.getValue());
         }
         basket.clearBasket();
